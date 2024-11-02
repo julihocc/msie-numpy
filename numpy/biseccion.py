@@ -7,7 +7,7 @@ def f(x):
 
 a = 1.4
 b = 1.6
-tol = 0.001 
+tol = 0.000001 
 nmax = 1000 
 
 x_range = np.linspace(a,b,num=101) 
@@ -34,7 +34,10 @@ output = None
 while n <= nmax:
     c = (a+b)/2 
     
-    if f(c) == 0 or (b-a)/2 < tol:
+    exact = f(c) == 0 
+    approximate = np.abs(f(c))<tol
+
+    if exact or approximate:
         output = c
         break  
 
